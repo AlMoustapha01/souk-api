@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'oauth2_provider',
     'comparator',
     'seller',
     'user',
@@ -49,13 +50,14 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL ='user.Users'
 
-
+LOGIN_URL='/admin/login/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_AUTHENTICATION_CLASSES': [
       'rest_framework.authentication.TokenAuthentication',
+      'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
       ],
 }
 MIDDLEWARE = [
@@ -104,15 +106,14 @@ WSGI_APPLICATION = 'souk_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'souk',
-        'USER': 'postgres',
-        'PASSWORD': '@dev_Master',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
